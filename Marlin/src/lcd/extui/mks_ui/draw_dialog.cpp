@@ -55,6 +55,10 @@
   #include "draw_touch_calibration.h"
 #endif
 
+#if HAS_LEVELING
+  #include "../../../feature/bedlevel/bedlevel.h"
+#endif
+
 extern lv_group_t *g;
 static lv_obj_t *scr, *tempText1, *filament_bar;
 
@@ -286,11 +290,19 @@ static void btn_ok_event_cb(lv_obj_t *btn, lv_event_t event) {
       clear_cur_ui();
       lv_draw_dialog(DIALOG_AUTO_LEVELING);
     }
-    else if (DIALOG_IS(AUTO_LEVEL_FINISHED, AUTO_LEVEL_LEVELERR)) {
+    else if (DIALOG_IS(AUTO_LEVEL_FINISHED)) {
       MUI.set_auto_leveling_state(LEVEL_STATE_NULL);
       lv_clear_dialog();
       MUI.page_draw_leveling();
     }
+    else if (DIALOG_IS(AUTO_LEVEL_LEVELERR)) {
+      MUI.set_auto_leveling_state(LEVEL_STATE_NULL);
+      TERN_(HAS_LEVELING, reset_bed_level());
+      TERN_(ENABLE_LEVELING_FADE_HEIGHT, set_z_fade_height(DEFAULT_LEVELING_FADE_HEIGHT, false));
+      lv_clear_dialog();
+      MUI.page_draw_leveling();
+    }
+
   #endif
   else if (DIALOG_IS(TYPE_FILAMENT_LOAD_HEAT, TYPE_FILAMENT_UNLOAD_HEAT)) {
     if (uiCfg.filament_load_heat_flg == 1 || uiCfg.filament_unload_heat_flg == 1 ) {
