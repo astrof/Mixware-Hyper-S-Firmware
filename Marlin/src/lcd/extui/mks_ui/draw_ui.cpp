@@ -773,22 +773,26 @@ void print_dis_status() {
 
         case MODE_DISP_EXT_TEMP:
           disp_ext_temp();
-          print_disp_mode = MODE_DISP_BED_TEMP;
-        break;
-
-        case MODE_DISP_BED_TEMP:
+          // print_disp_mode = MODE_DISP_BED_TEMP;
           disp_bed_temp();
           print_disp_mode = MODE_DISP_FAN_TEMP;
         break;
 
+        case MODE_DISP_BED_TEMP:
+          // disp_bed_temp();
+          // print_disp_mode = MODE_DISP_FAN_TEMP;
+        break;
+
         case MODE_DISP_FAN_TEMP:
           disp_fan_speed();
-          print_disp_mode = MODE_DISP_PRINT_TEMP;
+          // print_disp_mode = MODE_DISP_PRINT_TEMP;
+          disp_print_time();
+          print_disp_mode = MODE_DISP_FANZ_ZPOS;
         break;
 
         case MODE_DISP_PRINT_TEMP:
-          disp_print_time();
-          print_disp_mode = MODE_DISP_FANZ_ZPOS;
+          // disp_print_time();
+          // print_disp_mode = MODE_DISP_FANZ_ZPOS;
         break;
 
         case MODE_DISP_FANZ_ZPOS:
