@@ -88,7 +88,7 @@ extern bool flash_preview_begin, default_preview_flg;
 
 static void btn_ok_event_cb(lv_obj_t *btn, lv_event_t event) {
   if (event != LV_EVENT_RELEASED) return;
-  if (DIALOG_IS(TYPE_PRINT_FILE)) {
+  if (DIALOG_IS(TYPE_PRINT_FILE, TYPE_FINISH_PRINT)) {
     #if HAS_GCODE_PREVIEW
       preview_gcode_prehandle(list_file.file_name[sel_id]);
     #endif
@@ -162,22 +162,22 @@ static void btn_ok_event_cb(lv_obj_t *btn, lv_event_t event) {
     //   }
     // #endif
   }
-  else if (DIALOG_IS(TYPE_FINISH_PRINT)) {
-    clear_cur_ui();
-    lv_draw_ready_print();
-    #if ENABLED(AUTO_BED_LEVELING_BILINEAR)
-      // if (uiCfg.adjustZoffset) {
-      //   #if DISABLED(Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN)
-      //     for (uint8_t x = 0; x < GRID_MAX_POINTS_X; x++)
-      //       for (uint8_t y = 0; y < GRID_MAX_POINTS_Y; y++)
-      //         z_values[x][y] = z_values[x][y] + uiCfg.babyStepZoffsetDiff;
-      //   #endif
-      //   TERN_(EEPROM_SETTINGS, (void)settings.save());
-      //   uiCfg.babyStepZoffsetDiff = 0;
-      //   uiCfg.adjustZoffset       = 0;
-      // }
-    #endif
-  }
+  // else if (DIALOG_IS(TYPE_FINISH_PRINT)) {
+  //   clear_cur_ui();
+  //   lv_draw_ready_print();
+  //   #if ENABLED(AUTO_BED_LEVELING_BILINEAR)
+  //     // if (uiCfg.adjustZoffset) {
+  //     //   #if DISABLED(Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN)
+  //     //     for (uint8_t x = 0; x < GRID_MAX_POINTS_X; x++)
+  //     //       for (uint8_t y = 0; y < GRID_MAX_POINTS_Y; y++)
+  //     //         z_values[x][y] = z_values[x][y] + uiCfg.babyStepZoffsetDiff;
+  //     //   #endif
+  //     //   TERN_(EEPROM_SETTINGS, (void)settings.save());
+  //     //   uiCfg.babyStepZoffsetDiff = 0;
+  //     //   uiCfg.adjustZoffset       = 0;
+  //     // }
+  //   #endif
+  // }
   #if ENABLED(ADVANCED_PAUSE_FEATURE)
     else if (DIALOG_IS(PAUSE_MESSAGE_WAITING, PAUSE_MESSAGE_INSERT, PAUSE_MESSAGE_HEAT))
       wait_for_user = false;
