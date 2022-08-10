@@ -706,7 +706,7 @@ void disp_string(uint16_t x, uint16_t y, const char * string, uint16_t charColor
 }
 
 void disp_assets_update() {
-  // SPI_TFT.LCD_clear(0x0000);
+   SPI_TFT.LCD_clear(0x0000);
   disp_string(5, 430, "Assets Updating...", 0xFFFF, 0X18C3);
 }
 
