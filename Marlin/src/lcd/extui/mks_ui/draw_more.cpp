@@ -90,12 +90,8 @@ void lv_draw_more() {
   scr = lv_screen_create(MORE_UI);
 
   const bool enc_ena = TERN0(HAS_ROTARY_ENCODER, gCfgItems.encoder_enable);
-  #if DISABLED(TFT_MIXWARE_LVGL_UI)
-    lv_obj_t *buttonGCode = lv_imgbtn_create(scr, "F:/bmp_machine_para.bin", INTERVAL_V, titleHeight, event_handler, ID_GCODE);
-  #else
-    lv_obj_t *buttonGCode = lv_imgbtn_create(scr, MIMG.configuration, INTERVAL_V, titleHeight, event_handler, ID_GCODE);
-  #endif
-    
+
+  lv_obj_t *buttonGCode = lv_imgbtn_create(scr, "F:/bmp_machine_para.bin", INTERVAL_V, titleHeight, event_handler, ID_GCODE);
   if (enc_ena) lv_group_add_obj(g, buttonGCode);
   lv_obj_t *labelGCode = lv_label_create_empty(buttonGCode);
 
@@ -135,16 +131,7 @@ void lv_draw_more() {
     lv_obj_t *labelCustom6 = lv_label_create_empty(buttonCustom6);
   #endif
 
-   #if DISABLED(TFT_MIXWARE_LVGL_UI)
-    lv_obj_t *buttonBack = lv_imgbtn_create(scr, "F:/bmp_return.bin", BTN_X_PIXEL * 3 + INTERVAL_V * 4, BTN_Y_PIXEL + INTERVAL_H + titleHeight, event_handler, ID_M_RETURN);
-  #else
-    lv_obj_t *buttonBack = lv_btn_create(scr, BTN_X_PIXEL * 3 + INTERVAL_V * 4, BTN_Y_PIXEL + INTERVAL_H + titleHeight, PARA_UI_BACK_BTN_X_SIZE, PARA_UI_BACK_BTN_Y_SIZE, event_handler, ID_M_RETURN);
-    
-    
-  #endif
-
-
-  //lv_obj_t *buttonBack = lv_imgbtn_create(scr, "F:/bmp_return.bin", BTN_X_PIXEL * 3 + INTERVAL_V * 4, BTN_Y_PIXEL + INTERVAL_H + titleHeight, event_handler, ID_M_RETURN);
+  lv_obj_t *buttonBack = lv_imgbtn_create(scr, "F:/bmp_return.bin", BTN_X_PIXEL * 3 + INTERVAL_V * 4, BTN_Y_PIXEL + INTERVAL_H + titleHeight, event_handler, ID_M_RETURN);
   if (enc_ena) lv_group_add_obj(g, buttonBack);
   lv_obj_t *label_Back = lv_label_create_empty(buttonBack);
 

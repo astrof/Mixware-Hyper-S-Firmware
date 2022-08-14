@@ -115,20 +115,9 @@ static void event_handler(lv_obj_t *obj, lv_event_t event) {
 void lv_draw_extrusion() {
   scr = lv_screen_create(EXTRUSION_UI);
   // Create image buttons
-
-  
-  #if DISABLED(TFT_MIXWARE_LVGL_UI)
-    lv_obj_t *buttonAdd = lv_big_button_create(scr, "F:/bmp_in.bin", extrude_menu.in, INTERVAL_V, titleHeight, event_handler, ID_E_ADD);
-    lv_big_button_create(scr, "F:/bmp_out.bin", extrude_menu.out, BTN_X_PIXEL * 3 + INTERVAL_V * 4, titleHeight, event_handler, ID_E_DEC);
-  #else
-    lv_obj_t *buttonAdd = lv_big_button_create(scr, MIMG.add, extrude_menu.in, INTERVAL_V, titleHeight, event_handler, ID_E_ADD);
-    lv_big_button_create(scr, MIMG.dec, extrude_menu.out, BTN_X_PIXEL * 3 + INTERVAL_V * 4, titleHeight, event_handler, ID_E_DEC);
-  #endif
-
-
-  //lv_obj_t *buttonAdd = lv_big_button_create(scr, "F:/bmp_in.bin", extrude_menu.in, INTERVAL_V, titleHeight, event_handler, ID_E_ADD);
+  lv_obj_t *buttonAdd = lv_big_button_create(scr, "F:/bmp_in.bin", extrude_menu.in, INTERVAL_V, titleHeight, event_handler, ID_E_ADD);
   lv_obj_clear_protect(buttonAdd, LV_PROTECT_FOLLOW);
-  //lv_big_button_create(scr, "F:/bmp_out.bin", extrude_menu.out, BTN_X_PIXEL * 3 + INTERVAL_V * 4, titleHeight, event_handler, ID_E_DEC);
+  lv_big_button_create(scr, "F:/bmp_out.bin", extrude_menu.out, BTN_X_PIXEL * 3 + INTERVAL_V * 4, titleHeight, event_handler, ID_E_DEC);
 
   buttonType = lv_imgbtn_create(scr, nullptr, INTERVAL_V, BTN_Y_PIXEL + INTERVAL_H + titleHeight, event_handler, ID_E_TYPE);
   buttonStep = lv_imgbtn_create(scr, nullptr, BTN_X_PIXEL + INTERVAL_V * 2, BTN_Y_PIXEL + INTERVAL_H + titleHeight, event_handler, ID_E_STEP);
@@ -142,13 +131,7 @@ void lv_draw_extrusion() {
     }
   #endif
 
-  #if DISABLED(TFT_MIXWARE_LVGL_UI)
-    lv_big_button_create(scr, "F:/bmp_return.bin", common_menu.text_back, BTN_X_PIXEL * 3 + INTERVAL_V * 4, BTN_Y_PIXEL + INTERVAL_H + titleHeight, event_handler, ID_E_RETURN);
-  #else
-    MUI.page_button_return(scr,event_handler,ID_E_RETURN);
-  #endif
-
-  //lv_big_button_create(scr, "F:/bmp_return.bin", common_menu.text_back, BTN_X_PIXEL * 3 + INTERVAL_V * 4, BTN_Y_PIXEL + INTERVAL_H + titleHeight, event_handler, ID_E_RETURN);
+  lv_big_button_create(scr, "F:/bmp_return.bin", common_menu.text_back, BTN_X_PIXEL * 3 + INTERVAL_V * 4, BTN_Y_PIXEL + INTERVAL_H + titleHeight, event_handler, ID_E_RETURN);
 
   // Create labels on the image buttons
   labelType = lv_label_create_empty(buttonType);
