@@ -67,12 +67,12 @@ extern bool temps_update_flag;
 
 extern bool flash_preview_begin, default_preview_flg;
 
-#define CANCEL_ON_RIGHT   // Put 'Cancel' on the right (as it was before)
+//#define CANCEL_ON_RIGHT   // Put 'Cancel' on the right (as it was before)
 
- #define BTN_OK_X      TERN(CANCEL_ON_RIGHT, BTN_SIZE_WIDTH, 280)
- #define BTN_CANCEL_X  TERN(CANCEL_ON_RIGHT, 280, 100)
- #define BTN_OK_Y      180
- #define BTN_CANCEL_Y  180
+// #define BTN_OK_X      TERN(CANCEL_ON_RIGHT, BTN_SIZE_WIDTH, 280)
+// #define BTN_CANCEL_X  TERN(CANCEL_ON_RIGHT, 280, 100)
+// #define BTN_POS_Y      180
+// #define BTN_CANCEL_Y  180
 
 #define BTN_CENTER_X    (TFT_WIDTH/2 - BTN_SIZE_WIDTH/2)
 #define BTN_LEFT_X      (TFT_WIDTH/2 - BTN_HR_SPACE - BTN_SIZE_WIDTH)
